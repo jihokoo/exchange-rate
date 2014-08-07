@@ -1,0 +1,11 @@
+{
+  "name": "paypal",
+  "version": "0.0.0",
+  "description": "coding exercise for paypal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ji Ho Koo <jihokoo@gmail.com> (http://jihokoo.com/)",
+  "license": "ISC"
+}
