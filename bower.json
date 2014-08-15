@@ -8,7 +8,9 @@
     "angular-cookies": "~1.0.6",
     "angular-bootstrap": "~0.4.0",
     "angular-ui-utils": "0.0.4",
-    "angular-ui-ace": "~0.1.0"
+    "angular-ui-ace": "~0.1.0",
+    "angular-ui-router": "~0.2.10",
+    "angular-route": "latest"
   },
   "exportsOverride": {
     "bootstrap": {
@@ -19,5 +21,8 @@
     "angular-ui-utils": {
       "modules": "modules/route/route.js"
     }
+  },
+  "resolutions": {
+    "angular": "~1.0.6"
   }
 }

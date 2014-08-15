@@ -1,5 +1,5 @@
 extends layouts/default
 
 block content
-  h1= title
-  p Welcome to #{title}
+  section(data-ng-include data-src="'views/partials/navbar.html'")
+  section(data-ui-view)

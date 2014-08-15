@@ -168,21 +168,6 @@ section.outer-container {
   background-color: #58a5ff;
 }
 
-#twitter-icon {
-  width: 60%;
-  float: right;
-  margin-top: 0%;
-  margin-bottom: 0%;
-}
-
-#logged-in {
-  width: 60%;
-  float: right;
-  margin-top: 0%;
-  margin-bottom: 0%;
-}
-
-
 ul.nav {
   width: 100%;
   margin-bottom: 0%;
@@ -190,14 +175,13 @@ ul.nav {
 }
 
 
-.tweets-container {
+.paypal-container {
   margin-top: 4%;
   width: 100%;
   border-radius: 8px;
 }
 
-.individual-tweet,
-.favorited-tweet {
+.individual-transaction {
   background-color: #fff;
   border-color: #b2ebff;
   border-style: solid;
@@ -211,17 +195,15 @@ ul.nav {
   text-align: left;
 }
 
-.individual-tweet {
+.individual-transaction {
   width: 100%;
 }
 
-.individual-tweet:hover,
-.favorited-tweet:hover {
+.individual-transaction:hover {
   background-color: #f6f2f0;
 }
 
-.individual-tweet:focus,
-.favorited-tweet:focus {
+.individual-transaction:focus {
   outline: none;
 }
 
@@ -272,22 +254,6 @@ ul.nav {
   font-size: 80%;
 }
 
-.profile-image {
-  border-radius: 50%;
-  width: 7%;
-  margin-right: 1.5%;
-  float: left;
-}
-
-#profile-body {
-  width: 90%;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 2% 2% 2% 2%;
-  margin-bottom: 4%;
-  margin-top: 4%;
-}
-
 #main-body {
   width: 60%;
   background-color: #fff;
@@ -307,75 +273,4 @@ ul.nav {
   margin-top: 3%;
   margin-bottom: 0%;
   padding-bottom: 0%;
-}
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-width : 320px)
-and (max-width : 480px) {
-/* Styles */
-.favorited-tweet {
-  display: inline-block;
-  width: 200%;
-}
-}
-
-/* Smartphones (landscape) ----------- */
-@media only screen
-and (min-width : 320px) {
-/* Styles */
-.favorited-tweet {
-  display: inline-block;
-  width: 200%;
-}
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen
-and (max-width : 480px) {
-/* Styles */
-.favorited-tweet {
-  display: inline-block;
-  width: 200%;
-}
-}
-
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 768px) {
-/* Styles */
-
-.favorited-tweet {
-  display: inline-block;
-  width: 50%;
-}
-
-
-}
-
-
-
-/* Desktops and laptops ----------- */
-@media only screen
-and (min-width : 1224px) {
-/* Styles */
-
-.favorited-tweet {
-  display: inline-block;
-  width: 33.33%;
-}
-
-}
-
-/* Large screens ----------- */
-@media only screen
-and (min-width : 1824px) {
-/* Styles */
-
-.favorited-tweet {
-  display: inline-block;
-  width: 20%;
-}
-
 }

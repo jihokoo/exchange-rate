@@ -7,4 +7,4 @@ angular.module('paypal.services.global', [])
         };
         return _this._data;
     }
-  ])
+  ]);
