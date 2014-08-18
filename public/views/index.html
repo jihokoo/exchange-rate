@@ -1,12 +1,24 @@
-<div class="container" id="main-body" data-ng-controller="IndexController" data-ng-init="searchNew()">
-  <div class="form-group" data-ui-view>
-    <h3 id="main-header">Transactions</h3>
-    <form data-ng-submit="search()">
-      <input type="text" class="form-control" placeholder="#" data-ng-model="keyWords" autofocus required>
+<div class="container" id="main-body" data-ng-controller="IndexController">
+  <div class="form-group">
+    <h3 class="content" id="main-header">Enter your payment details and hit submit!</h3>
+    <form>
+      <label for='transaction-type' class="transaction-details">Type</label>
+      <label for='transaction-subject' class="transaction-details">Subject</label>
+      <select id='transaction-type' class="form-control transaction-details">
+        <option value="Purchase">Purchase</option>
+        <option value="Transfer">Transfer</option>
+        <option value="Refund">Refund</option>
+      </select>
+      <input id='transaction-subject' type="text" class="form-control transaction-details" style="width: 50%;" placeholder="short description of transaction" autofocus required>
+      <label for='transaction-date' class="transaction-details">Date</label>
+      <label for='transaction-amount' class="transaction-details">Amount</label>
+      <input ng-model="formData.dueDate" type="text" id="transaction-date" name="dueDate"
+      class="form-control datepicker transaction-details" datepicker-popup="{{format}}" datepicker-append-to-body="true"
+      is-open="data.isOpen" ng-click="data.isOpen = true" ng-model="transaction.date" placeholder="date of transaction">
+      <input id='transaction-amount' type="text" class="form-control transaction-details" placeholder="net-value of transaction" autofocus required>
+      <button type="button" class="btn btn-primary form-control" id="submit" style="margin-top: 22px;">Submit</button>
     </form>
-    <div class="paypal-container">
-      <button type="button" class="individual-transaction clearfix">
-      </button>
+    <div class="calls-container">
     </div>
   </div>
 </div>
