@@ -27,7 +27,7 @@ describe('Transactions', function () {
     Transaction.push({
       'type': 'Purchase',
       'subject': 'New Computer',
-      'date': new Date(),
+      'date': new Date().toString(),
       'amount': 2000
     });
     Transaction.list().length.should.equal(1);
@@ -48,7 +48,7 @@ describe('Transactions', function () {
     Transaction.push({
       'type': 'hello',
       'subject': 'New Computer',
-      'date': new Date(),
+      'date': new Date().toString(),
       'amount': 2000
     }).message.should.equal('Error: Invalid Transaction Type.')
     Transaction.list().length.should.equal(0);
@@ -56,9 +56,25 @@ describe('Transactions', function () {
     Transaction.push({
       'type': 'Purchase',
       'subject': 'New Computer',
-      'date': new Date(),
+      'date': new Date().toString(),
       'amount': NaN
     }).message.should.equal('Error: Invalid Amount.')
     Transaction.list().length.should.equal(0);
+  });
+
+  it('should have a method to find objects by key value pairs', function(){
+    var now = new Date().toString();
+    Transaction.push({
+      'type': 'Purchase',
+      'subject': 'New Computer',
+      'date': now,
+      'amount': 2000
+    });
+    Transaction.find({'date': now}).should.containDeep([{
+      'type': 'Purchase',
+      'subject': 'New Computer',
+      'date': now,
+      'amount': 2000
+    }]);
   });
 });
