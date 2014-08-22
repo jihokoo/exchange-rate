@@ -1,4 +1,4 @@
-var data = require('../models/store');
+var data = require('../models/store')();
 
 exports.create = function(req, res){
   var newTransaction = data.push(req.body);
