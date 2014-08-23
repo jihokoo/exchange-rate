@@ -6,43 +6,43 @@ angular.module('paypal.controllers.index', [])
   $scope.format = $scope.formats[3];
 
 
-  $scope.initialize = function(){
+  $scope.getAll = function(){
     $http.get('/paypal/activity')
       .success(function(data){
-
+        console.log('get')
       })
       .error(function(data){
-
+        console.log('get error')
       });
   };
 
-  $scope.submit = function(){
+  $scope.create = function(){
     $http.post('/paypal/create', {})
       .success(function(data){
-        console.log(data);
+        console.log('create')
       })
       .error(function(err){
-        console.log(err);
+        console.log('create error')
       });
   };
 
   $scope.convert = function(){
-    $http.get('/paypal/currencyConversion', {})
+    $http.get('/paypal/currencyConversion')
       .success(function(data){
-        console.log(data);
+        console.log('currencyConversion')
       })
       .error(function(err){
-        console.log(err);
+        console.log('convert error')
       });
   }
 
-  $scope.conversionRate = function(){
-    $http.get('/paypal/conversionRate', {})
+  $scope.getConversionRate = function(){
+    $http.get('/paypal/conversionRate')
       .success(function(data){
-        console.log(data);
+        console.log('conversionRate')
       })
       .error(function(err){
-        console.log(err);
+        console.log('conversion error')
       });
   }
 

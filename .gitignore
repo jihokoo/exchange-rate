@@ -12,3 +12,6 @@ pids
 
 node_modules
 app/components
+test_file.json
+saved_rates.json
+locale_data.json

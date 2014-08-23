@@ -8,8 +8,7 @@ window.app = angular.module('paypal',
   ]);
 
 angular.module('paypal.controllers',
-  ['paypal.controllers.index',
-  'paypal.controllers.navbar'
+  ['paypal.controllers.index'
   ]);
 
 angular.module('paypal.services',

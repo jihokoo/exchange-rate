@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 
 router.post('/paypal/create', index.create);
 
-router.get('/paypal/activity', index.showAll);
+router.get('/paypal/activity', index.getAll);
 
 router.get('/paypal/currencyConversion', index.convert);
 

@@ -1,6 +1,6 @@
 var _ = require("underscore");
 
-var store = function() {
+var store = (function() {
   var data = []; // private variable closed over
 
   var validate = function(input) {
@@ -33,15 +33,22 @@ var store = function() {
         "date": input.date,
         "amount": input.amount
       });
+      return input;
     },
     list: function() {
       return data;
     },
     find: function(properties) {
       return _.where(data, properties);
+    },
+    clear: function() {
+      var toBeDeleted = data;
+      data = [];
+      delete toBeDeleted;
+      return data;
     }
   };
-};
+})();
 
 module.exports = store;
 

@@ -1,10 +1,10 @@
-var should = require('should')
-  , Transaction;
+var should = require('should'),
+  Transaction = require('../app/models/store');
 
 describe('Transactions', function () {
 
   beforeEach(function () {
-    Transaction = require('../app/models/store')();
+    Transaction.clear();
   });
 
   it("should be an instance of Object", function(){
