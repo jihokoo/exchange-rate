@@ -37,6 +37,7 @@ describe('Transaction controller', function () {
 
       agent
         .get('/paypal/activity')
+        .expect('Content-Type', /json/)
         .expect(200)
         .expect(function(res) {
           res.body.should.be.an.instanceOf(Array);
@@ -57,6 +58,7 @@ describe('Transaction controller', function () {
 
       agent
         .get('/paypal/activity')
+        .expect('Content-Type', /json/)
         .expect(200)
         .expect(function(res) {
           res.body.should.be.an.instanceOf(Array);
@@ -78,6 +80,7 @@ describe('Transaction controller', function () {
           'date': new Date().toString(),
           'amount': 200
         })
+        .expect('Content-Type', /json/)
         .expect(200)
         .expect(function(res) {
           res.body.subject.should.equal('Testing Creating Transactions');
@@ -89,6 +92,70 @@ describe('Transaction controller', function () {
       agent
         .post('/paypal/create')
         .expect(500)
+        .end(done);
+    });
+  });
+
+  describe('POST /paypal/currencyConversion', function () {
+
+    it('should be able to convert USD into foreign currency', function (done) {
+      agent
+        .post('/paypal/currencyConversion')
+        .send({
+          'convertTo': 'EUR',
+          'amount': '500'
+        })
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(function(res) {
+          var symbol = res.body.amount.split(' ')[0];
+          var amount = parseFloat(res.body.amount.split(' ')[1]);
+          symbol.should.equal('€');
+          amount.should.be.type('number');
+          (!!amount).should.be.true;
+        })
+        .end(done);
+    });
+
+    it('should return a 500 error if the fields are invalid', function (done) {
+      agent 
+        .post('/paypal/currencyConversion')
+        .send({
+          'convertTo': 'EUR'
+        })
+        .expect(500)
+        .expect(function(res) {
+          res.body.message.should.equal('Error: must post a currency code to convert to and a valid amount')
+        })
+        .end(done);
+    });
+  });
+
+  describe('GET /paypal/conversionRate', function () {
+
+    it('should be able to get foreign exchange rates', function (done) {
+      agent
+        .get('/paypal/conversionRate/EUR')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(function(res) {
+          var symbol = res.body.rate.split(' ')[0];
+          var rate = parseFloat(res.body.rate.split(' ')[1]);
+          symbol.should.equal('€');
+          rate.should.be.type('number');
+          (!!rate === true).should.be.true;
+        })
+        .end(done);
+    });
+
+    it('should return a 500 error if the fields are invalid', function (done) {
+      agent
+        .get('/paypal/conversionRate/s')
+        .expect('Content-Type', /json/)
+        .expect(500)
+        .expect(function(res) {
+          res.body.message.should.equal('Error: This is either an incorrect code or this code is not yet supported.')
+        })
         .end(done);
     });
   });

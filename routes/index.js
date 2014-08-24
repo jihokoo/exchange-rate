@@ -11,8 +11,8 @@ router.post('/paypal/create', index.create);
 
 router.get('/paypal/activity', index.getAll);
 
-router.get('/paypal/currencyConversion', index.convert);
+router.post('/paypal/currencyConversion', index.convert);
 
-router.get('/paypal/conversionRate', index.getConversionRate);
+router.get('/paypal/conversionRate/:currency', index.getConversionRate);
 
 module.exports = router;
