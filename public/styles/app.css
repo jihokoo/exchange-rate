@@ -203,14 +203,13 @@ ul.nav {
 }
 
 
-.calls-container {
+.transactions-container {
   margin-top: 4%;
   width: 100%;
   border-radius: 8px;
 }
 
-.individual-call,
-.favorited-tweet {
+.individual-transaction {
   background-color: #fff;
   border-color: #b2ebff;
   border-style: solid;
@@ -218,23 +217,21 @@ ul.nav {
   padding-top: 1%;
   padding-bottom: 1%;
   padding-right: 1%;
-  padding-left: 1%;
+  padding-left: 5%;
   margin-top: 2%;
   cursor: pointer;
   text-align: left;
 }
 
-.individual-call {
+.individual-transaction {
   width: 100%;
 }
 
-.individual-call:hover,
-.favorited-tweet:hover {
+.individual-transaction:hover {
   background-color: #f6f2f0;
 }
 
-.individual-call:focus,
-.favorited-tweet:focus {
+.individual-transaction:focus {
   outline: none;
 }
 
@@ -305,7 +302,7 @@ ul.nav {
   background-color: #fff;
   border-radius: 10px;
   padding: 2% 2% 2% 2%;
-  margin-bottom: 0px;
+  margin-bottom: 4%;
   margin-top: 4%;
 }
 
@@ -429,4 +426,29 @@ label[for="transaction-amount"],
 label.transaction-details {
   font-family: 'Whitney SSm A','Whitney SSm B',Helvetica,Arial;
   color: #85858b;
+}
+
+.transaction-date {
+  border-right: solid;
+  border-width: 1px;
+  border-color: #85858b;
+  padding-right: 10px;
+  float: left;
+  padding-left: 4%;
+}
+
+.transaction-type {
+  padding-left: 5%;
+  padding-right: 2%;
+  float: left;
+}
+
+.transaction-subject {
+  padding-right: 5%;
+  float: left;
+}
+
+.transaction-amount {
+  padding-right: 5%;
+  float: right;
 }

@@ -7,7 +7,7 @@ var store = (function() {
     var type = input.type, 
       subject = input.subject, 
       date = input.date, 
-      amount = input.amount;
+      amount = parseFloat(input.amount);
 
     if(!(type && subject && date && amount) && (amount === undefined)){
       return {message: 'Error: Missing data fields.'};
@@ -49,6 +49,16 @@ var store = (function() {
     }
   };
 })();
+
+var transactions = [{type: 'Purchase', subject: 'Hello', date: new Date(), amount: 5000}, 
+{type: 'Purchase', subject: 'Hello', date: new Date(), amount: 1000}, 
+{type: 'Transfer', subject: 'Yo', date: new Date(), amount: 200},
+{type: 'Refund', subject: 'What up', date: new Date(), amount: 8000},
+{type: 'Purchase', subject: 'Good-bye', date: new Date(), amount: 3.33}];
+
+transactions.forEach(function(transaction){
+  store.push(transaction);
+});
 
 module.exports = store;
 
