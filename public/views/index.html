@@ -24,14 +24,8 @@
         <span class="transaction-date">{{format(transaction.date)}}</span>
         <span class="transaction-type">{{transaction.type}}: </span>
         <span class="transaction-subject"> {{transaction.subject}}</span>
-        <select>
-          <option>USD $</option>
-          <option>INR ₹</option>
-          <option>CAD $</option>
-          <option>CNY CN¥</option>
-          <option>EUR €</option>
-        </select>
-        <span class="transaction-amount">{{transaction.amount}}</span>
+        <span class="transaction-amount" style="width: 35%;"><select style="margin-right: 3%;" ng-model="transaction.currency" ng-options="currency.code as currency.display for currency in currencyShortList" ng-change="convert(transaction)">
+        </select>{{transaction.amount}}</span>
         <br>
         <br>
       </button>
