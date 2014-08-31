@@ -21,36 +21,35 @@ exports.getAll = function(req, res){
 };
 
 exports.convert = function(req, res){
-  console.log(req.body);
   var convertTo = req.body.convertTo;
+  var convertFrom = req.body.convertFrom;
   var amount = parseFloat(req.body.amount);
-  if(convertTo && (amount >= 0)){
-    forex.getRate(convertTo)
+  if(convertTo && convertFrom && (amount >= 0)){
+    forex.getRate([convertFrom, convertTo])
       .then(function(data){
-        console.log(data);
-        var symbol = data.split(' ')[0];
-        var rate = (Math.round(parseFloat(data.split(' ')[1]) + 0.00001) * 100) / 100;
-        amount = rate * amount;
-        res.json(200, {symbol: symbol, amount: amount});
+        from = data[0];
+        to = data[1];
+        var conversionRate = to.rate / from.rate;
+        amount = conversionRate * amount;
+        res.json(200, {symbol: to.symbol, amount: amount});
       }, function(err){
-        console.log('err', err)
-        console.log('convert', err);
         res.json(500, err);
       });
   } else{
-    console.log('here')
     res.json(500, {message: 'Error: must post a currency code to convert to and a valid amount'})
   }
 };
 
 exports.getConversionRate = function(req, res){
-  var currency = req.params.currency;
-  if(currency){
-    forex.getRate(currency)
+  var convertTo = req.body.convertTo;
+  var convertFrom = req.body.convertFrom;
+  if(convertTo && convertFrom){
+    forex.getRate([convertFrom, convertTo])
       .then(function(data){
-        var symbol = data.split(' ')[0];
-        var rate = (Math.round(parseFloat(data.split(' ')[1]) + 0.00001) * 100) / 100;
-        res.json(200, {rate: rate, symbol: symbol})
+        from = data[0];
+        to = data[1];
+        var conversionRate = to.rate / from.rate;
+        res.json(200, {rate: conversionRate, symbol: symbol})
       }, function(err){
         res.json(500, {message: 'Error: '+err.message});
       });

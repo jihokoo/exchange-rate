@@ -35,7 +35,9 @@ angular.module('paypal.controllers.index', [])
         amount: $scope.transaction.amount
       })
         .success(function(data){
-          data.currency = $scope.currencyShortList[0];
+          data.convertTo = $scope.currencyShortList[0].code;
+          data.convertFrom = $scope.currencyShortList[0].code;
+          data.amount = parseFloat(data.amount);
           $scope.transactions.push(data);
         })
         .error(function(err){
@@ -44,14 +46,14 @@ angular.module('paypal.controllers.index', [])
     };
 
     $scope.convert = function(transaction){
-      console.log(transaction)
       $http.post('/paypal/currencyConversion', {
-        convertTo: transaction.currency, 
+        convertFrom: transaction.convertFrom,
+        convertTo: transaction.convertTo, 
         amount: transaction.amount
       })
         .success(function(data){
-          console.log(data.amount);
-          transaction.amount = data.amount;
+          transaction.convertFrom = transaction.convertTo;
+          transaction.amount = data.amount
         })
         .error(function(err){
           console.log('convert error', err)
@@ -73,8 +75,8 @@ angular.module('paypal.controllers.index', [])
       $http.get('/paypal/activity')
       .success(function(data){
         data.forEach(function(transaction){
-          transaction.currency = $scope.currencyShortList[0].code;
-          console.log(transaction);
+          transaction.convertTo = $scope.currencyShortList[0].code;
+          transaction.convertFrom = $scope.currencyShortList[0].code;
           $scope.transactions.push(transaction);
         });
       })

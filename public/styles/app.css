@@ -434,17 +434,17 @@ label.transaction-details {
   border-color: #85858b;
   padding-right: 10px;
   float: left;
-  padding-left: 4%;
+  padding-left: 3%;
 }
 
 .transaction-type {
-  padding-left: 5%;
+  padding-left: 3%;
   padding-right: 2%;
   float: left;
 }
 
 .transaction-subject {
-  padding-right: 5%;
+  padding-right: 3%;
   float: left;
 }
 

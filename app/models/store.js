@@ -31,7 +31,7 @@ var store = (function() {
         "type": input.type,
         "subject": input.subject,
         "date": input.date,
-        "amount": input.amount
+        "amount": parseFloat(input.amount)
       });
       return input;
     },

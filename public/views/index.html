@@ -24,8 +24,9 @@
         <span class="transaction-date">{{format(transaction.date)}}</span>
         <span class="transaction-type">{{transaction.type}}: </span>
         <span class="transaction-subject"> {{transaction.subject}}</span>
-        <span class="transaction-amount" style="width: 35%;"><select style="margin-right: 3%;" ng-model="transaction.currency" ng-options="currency.code as currency.display for currency in currencyShortList" ng-change="convert(transaction)">
-        </select>{{transaction.amount}}</span>
+        <span class="transaction-amount" style="width: 40%; text-align: right;">
+          <select style="margin-right: 3%; width: 50%; text-align: right;" ng-model="transaction.convertTo" ng-options="currency.code as currency.display for currency in currencyShortList" ng-change="convert(transaction)"></select>{{transaction.amount.toFixed(2)}}
+        </span>
         <br>
         <br>
       </button>
