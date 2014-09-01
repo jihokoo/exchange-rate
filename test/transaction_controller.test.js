@@ -100,16 +100,17 @@ describe('Transaction controller', function () {
 
     it('should be able to convert USD into foreign currency', function (done) {
       agent
-        .post('/paypal/currencyConversion')
+        .post('/paypal/convert')
         .send({
           'convertTo': 'EUR',
+          'convertFrom': 'USD',
           'amount': '500'
         })
         .expect('Content-Type', /json/)
         .expect(200)
         .expect(function(res) {
-          var symbol = res.body.amount.split(' ')[0];
-          var amount = parseFloat(res.body.amount.split(' ')[1]);
+          var symbol = res.body.symbol;
+          var amount = parseFloat(res.body.amount);
           symbol.should.equal('€');
           amount.should.be.type('number');
           (!!amount).should.be.true;
@@ -119,10 +120,12 @@ describe('Transaction controller', function () {
 
     it('should return a 500 error if the fields are invalid', function (done) {
       agent 
-        .post('/paypal/currencyConversion')
+        .post('/paypal/convert')
         .send({
-          'convertTo': 'EUR'
+          'convertTo': 'EUR',
+          'convertFrom': 'USD'
         })
+        .expect('Content-Type', /json/)
         .expect(500)
         .expect(function(res) {
           res.body.message.should.equal('Error: must post a currency code to convert to and a valid amount')
@@ -131,16 +134,20 @@ describe('Transaction controller', function () {
     });
   });
 
-  describe('GET /paypal/conversionRate', function () {
+  describe('POST /paypal/conversionRate', function () {
 
     it('should be able to get foreign exchange rates', function (done) {
       agent
-        .get('/paypal/conversionRate/EUR')
+        .post('/paypal/conversionRate')
+        .send({
+          'convertTo': 'EUR',
+          'convertFrom': 'USD'
+        })
         .expect('Content-Type', /json/)
         .expect(200)
         .expect(function(res) {
-          var symbol = res.body.rate.split(' ')[0];
-          var rate = parseFloat(res.body.rate.split(' ')[1]);
+          var symbol = res.body.symbol
+          var rate = parseFloat(res.body.rate);
           symbol.should.equal('€');
           rate.should.be.type('number');
           (!!rate === true).should.be.true;
@@ -150,11 +157,14 @@ describe('Transaction controller', function () {
 
     it('should return a 500 error if the fields are invalid', function (done) {
       agent
-        .get('/paypal/conversionRate/s')
+        .post('/paypal/conversionRate')
+        .send({
+          'convertTo': 's'
+        })
         .expect('Content-Type', /json/)
         .expect(500)
         .expect(function(res) {
-          res.body.message.should.equal('Error: This is either an incorrect code or this code is not yet supported.')
+          res.body.message.should.equal('Error: must enter two currency codes to convert from and convert to.');
         })
         .end(done);
     });

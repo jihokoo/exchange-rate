@@ -46,7 +46,7 @@ angular.module('paypal.controllers.index', [])
     };
 
     $scope.convert = function(transaction){
-      $http.post('/paypal/currencyConversion', {
+      $http.post('/paypal/convert', {
         convertFrom: transaction.convertFrom,
         convertTo: transaction.convertTo, 
         amount: transaction.amount

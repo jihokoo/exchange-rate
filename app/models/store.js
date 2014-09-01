@@ -7,9 +7,8 @@ var store = (function() {
     var type = input.type, 
       subject = input.subject, 
       date = input.date, 
-      amount = parseFloat(input.amount);
-
-    if(!(type && subject && date && amount) && (amount === undefined)){
+      amount = input.amount;
+    if(!(type && subject && date && amount) && (amount ===undefined)){
       return {message: 'Error: Missing data fields.'};
     } else if(new Date(date).toString() === 'Invalid Date'){
       return {message: 'Error: Invalid Date.'};

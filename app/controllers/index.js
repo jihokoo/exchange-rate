@@ -6,12 +6,12 @@ exports.create = function(req, res){
   if(req.body){
     newData = data.push(req.body);
     if(newData.message){
-      res.json(500, newData)
+      res.json(500, newData);
     } else{
       res.json(200, newData);
     }
   } else{
-    res.json(500)
+    res.json(500);
   }
 };
 
@@ -46,14 +46,15 @@ exports.getConversionRate = function(req, res){
   if(convertTo && convertFrom){
     forex.getRate([convertFrom, convertTo])
       .then(function(data){
+        console.log('getconversionrate', data);
         from = data[0];
         to = data[1];
         var conversionRate = to.rate / from.rate;
-        res.json(200, {rate: conversionRate, symbol: symbol})
+        res.json(200, {rate: conversionRate, symbol: to.symbol})
       }, function(err){
         res.json(500, {message: 'Error: '+err.message});
       });
   } else{
-    res.json(500, {message: 'Error: must enter a currency code'});
+    res.json(500, {message: 'Error: must enter two currency codes to convert from and convert to.'});
   }
 };
