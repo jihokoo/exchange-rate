@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development ./node_modules/.bin/nodemon app.js",
-    "test": "NODE_ENV=test nodemon ./node_modules/.bin/mocha --reporter spec --timeout 10000 test/*.test.js"
+    "test": "NODE_ENV=test nodemon ./node_modules/.bin/mocha --reporter spec --timeout 10000 test/*.test.js",
+    "postinstall": "node node_modules/bower/bin/bower install"
   },
   "author": "Ji Ho Koo <jihokoo@gmail.com> (http://jihokoo.com/)",
   "license": "ISC",
@@ -21,6 +22,9 @@
     "mocha": "^1.21.4",
     "should": "^4.0.4",
     "supertest": "^0.13.0",
-    "nodemon": "^1.2.1"
+    "nodemon": "^1.2.1",
+    "bower": "^1.3.9",
+    "request": "^2.40.0",
+    "q": "^1.0.1"
   }
 }

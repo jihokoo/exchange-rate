@@ -49,11 +49,11 @@ var store = (function() {
   };
 })();
 
-var transactions = [{type: 'Purchase', subject: 'Hello', date: new Date(), amount: 5000}, 
-{type: 'Purchase', subject: 'Hello', date: new Date(), amount: 1000}, 
-{type: 'Transfer', subject: 'Yo', date: new Date(), amount: 200},
-{type: 'Refund', subject: 'What up', date: new Date(), amount: 8000},
-{type: 'Purchase', subject: 'Good-bye', date: new Date(), amount: 3.33}];
+var transactions = [{type: 'Purchase', subject: 'Breakfasat', date: new Date(), amount: 15}, 
+{type: 'Purchase', subject: 'Dinner', date: new Date(), amount: 20}, 
+{type: 'Transfer', subject: 'Wages', date: new Date(), amount: 20},
+{type: 'Refund', subject: 'Clothes', date: new Date(), amount: 50},
+{type: 'Purchase', subject: 'Present', date: new Date(), amount: 20}];
 
 transactions.forEach(function(transaction){
   store.push(transaction);

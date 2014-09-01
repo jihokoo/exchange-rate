@@ -21,5 +21,8 @@
     "angular-ui-utils": {
       "modules": "modules/route/route.js"
     }
+  },
+  "resolutions": {
+    "angular": "1.2.22"
   }
 }
