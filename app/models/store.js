@@ -8,13 +8,13 @@ var store = (function() {
       subject = input.subject, 
       date = input.date, 
       amount = input.amount;
-    if(!(type && subject && date && amount) && (amount ===undefined)){
+    if(!(type && subject && date && amount) && (amount === undefined)){
       return {message: 'Error: Missing data fields.'};
     } else if(new Date(date).toString() === 'Invalid Date'){
       return {message: 'Error: Invalid Date.'};
     } else if(['Purchase', 'Transfer', 'Refund'].indexOf(type) === -1){
       return {message: 'Error: Invalid Transaction Type.'};
-    } else if((!!amount === false) || (amount !== 0) && (typeof amount !== 'number')){
+    } else if((!!parseFloat(amount) === false) || (parseFloat(amount) !== 0) && (typeof parseFloat(amount) !== 'number')){
       return {message: 'Error: Invalid Amount.'};
     } else{
       return true;

@@ -1,5 +1,7 @@
 angular.module('paypal.controllers.index', [])
-  .controller('IndexController', ['$scope', '$http', '$state', 'Global', function($scope, $http, $state, Global){
+  .controller('IndexController', ['$scope', '$http', '$state', '$location', '$anchorScroll', 'Global', function($scope, $http, $state, $location, $anchorScroll, Global){
+    
+    $location.hash('new');
     $scope.global = Global;
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'MM/dd/yyyy', 'shortDate'];
@@ -39,6 +41,8 @@ angular.module('paypal.controllers.index', [])
           data.convertFrom = $scope.currencyShortList[0].code;
           data.amount = parseFloat(data.amount);
           $scope.transactions.push(data);
+          $scope.transaction = {};
+          $anchorScroll();
         })
         .error(function(err){
           console.log('create error', err);
@@ -60,9 +64,12 @@ angular.module('paypal.controllers.index', [])
         });
     };
 
-
-    $scope.getConversionRate = function(currencyCode){
-      $http.get('/paypal/conversionRate/'+currencyCode)
+    // this function is not being used
+    $scope.getConversionRate = function(transaction){
+      $http.post('/paypal/conversionRate', {
+        convertFrom: transaction.convertFrom,
+        convertTo: transaction.convertTo
+      })
         .success(function(data){
           console.log('conversionRate', data);
         })
@@ -70,6 +77,7 @@ angular.module('paypal.controllers.index', [])
           console.log('conversion error', err);
         });
     };
+
 
     (function(){
       $http.get('/paypal/activity')
